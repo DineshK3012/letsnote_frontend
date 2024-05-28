@@ -6,7 +6,7 @@ export const getAllNotes = () => async (dispatch) => {
             type: "LoadNotesRequest"
         })
 
-        const { data } = await axios.get('/api/notes');
+        const { data } = await axios.get(`/api/notes`);
 
         dispatch({
             type: "LoadNotesSuccess",
@@ -49,7 +49,7 @@ export const addNote = (note) => async (dispatch) => {
             type: "AddNoteRequest"
         })
 
-        const { data } = await axios.post('/api/note',
+        const { data } = await axios.post(`/api/note`,
             note,
             {
                 headers: {

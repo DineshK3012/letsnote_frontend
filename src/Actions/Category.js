@@ -6,7 +6,7 @@ export const getAllCategories = () => async (dispatch) => {
             type: "LoadCategoryRequest"
         })
 
-        const { data } = await axios.get('/api/categories');
+        const { data } = await axios.get(`/api/categories`);
 
         dispatch({
             type: "LoadCategorySuccess",

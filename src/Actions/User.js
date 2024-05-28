@@ -6,7 +6,7 @@ export const loadUser = () => async (dispatch) => {
             type: "LoadUserRequest"
         });
 
-        const { data } = await axios.get("/api/me");
+        const { data } = await axios.get(`/api/me`);
 
         dispatch({
             type: "LoadUserSuccess",
@@ -27,7 +27,7 @@ export const loginUser = ({ name, email, password }) => async (dispatch) => {
             type: "LoginUserRequest"
         });
 
-        const { data } = await axios.post("/api/login", { name, email, password }, {
+        const { data } = await axios.post(`/api/login`, { name, email, password }, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -52,7 +52,7 @@ export const registerUser = (formData) => async (dispatch) => {
             type: "RegisterUserRequest"
         });
 
-        const { data } = await axios.post("/api/register", formData, {
+        const { data } = await axios.post(`/api/register`, formData, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -77,7 +77,7 @@ export const logoutUser = () => async (dispatch) => {
             type: "LogoutUserRequest"
         });
 
-        const { data } = await axios.get("/api/logout");
+        const { data } = await axios.get(`/api/logout`);
 
         dispatch({
             type: "LogoutUserSuccess",
@@ -99,7 +99,7 @@ export const updateProfile = (name) => async (dispatch) => {
             type: "UpdateProfileRequest"
         });
 
-        const { data } = await axios.put("/api/me", { name }, {
+        const { data } = await axios.put(`/api/me`, { name }, {
             headers: {
                 "Content-Type": "application/json"
             }
@@ -123,7 +123,7 @@ export const deleteMyProfile = () => async (dispatch) => {
             type: "DeleteProfileRequest"
         });
 
-        const { data } = await axios.delete("/api/me");
+        const { data } = await axios.delete(`/api/me`);
 
         dispatch({
             type: "DeleteProfileSuccess",
