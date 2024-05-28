@@ -7,7 +7,7 @@ export const loadUser = () => async (dispatch) => {
             type: "LoadUserRequest"
         });
 
-        const { data } = await axios.get(`https://letsnote-backend.onrender.com/api/me`, {
+        const { data } = await axios.get(`${base_url}/api/me`, {
             headers: {
                 "credentials": "include"
             }
@@ -32,7 +32,7 @@ export const loginUser = ({ name, email, password }) => async (dispatch) => {
             type: "LoginUserRequest"
         });
 
-        const { data } = await axios.post(`https://letsnote-backend.onrender.com/api/login`, { name, email, password }, {
+        const { data } = await axios.post(`${base_url}/api/login`, { name, email, password }, {
             headers: {
                 "Content-Type": "application/json",
                 "credentials": "include"
