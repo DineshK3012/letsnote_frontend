@@ -7,10 +7,8 @@ export const getAllNotes = () => async (dispatch) => {
             type: "LoadNotesRequest"
         })
 
-        const { data } = await axios.get(`${base_url}/api/notes`,{
-            headers: {
-                "credentials": "include"
-            }
+        const { data } = await axios.get(`${base_url}/api/notes`, {
+            withCredentials: true
         });
 
         dispatch({
@@ -32,10 +30,8 @@ export const getCategoryNotes = (category_id) => async (dispatch) => {
             type: "LoadNotesRequest"
         })
 
-        const { data } = await axios.get(`${base_url}/api/notes/${category_id}`,{
-            headers: {
-                "credentials": "include"
-            }
+        const { data } = await axios.get(`${base_url}/api/notes/${category_id}`, {
+            withCredentials: true
         });
 
         dispatch({
@@ -61,9 +57,9 @@ export const addNote = (note) => async (dispatch) => {
         const { data } = await axios.post(`${base_url}/api/note`,
             note,
             {
+                withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
-                    'credentials': 'include'
                 }
             })
 
@@ -87,9 +83,9 @@ export const editNote = (note_id, note) => async (dispatch) => {
         })
 
         const { data } = await axios.put(`${base_url}/api/note/${note_id}`, note, {
+            withCredentials: true,
             headers: {
                 'Content-Type': 'application/json',
-                'credentials': 'include'
             }
         })
 
@@ -112,10 +108,8 @@ export const deleteNote = (note_id) => async (dispatch) => {
             type: "DeleteNoteRequest"
         })
 
-        const { data } = await axios.delete(`${base_url}/api/note/${note_id}`,{
-            headers: {
-                "credentials": "include"
-            }
+        const { data } = await axios.delete(`${base_url}/api/note/${note_id}`, {
+            withCredentials: true
         });
 
         dispatch({

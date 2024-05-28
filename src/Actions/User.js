@@ -8,9 +8,7 @@ export const loadUser = () => async (dispatch) => {
         });
 
         const { data } = await axios.get(`${base_url}/api/me`, {
-            headers: {
-                "credentials": "include"
-            }
+            withCredentials: true
         });
 
         dispatch({
@@ -33,9 +31,9 @@ export const loginUser = ({ name, email, password }) => async (dispatch) => {
         });
 
         const { data } = await axios.post(`${base_url}/api/login`, { name, email, password }, {
+            withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
-                "credentials": "include"
             }
         });
 
@@ -59,9 +57,9 @@ export const registerUser = (formData) => async (dispatch) => {
         });
 
         const { data } = await axios.post(`${base_url}/api/register`, formData, {
+            withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
-                "credentials": "include"
             }
         });
 
@@ -85,9 +83,7 @@ export const logoutUser = () => async (dispatch) => {
         });
 
         const { data } = await axios.get(`${base_url}/api/logout`, {
-            headers: {
-                "credentials": "include"
-            }
+            withCredentials: true
         });
 
         dispatch({
@@ -111,9 +107,9 @@ export const updateProfile = (name) => async (dispatch) => {
         });
 
         const { data } = await axios.put(`${base_url}/api/me`, { name }, {
+            withCredentials: true,
             headers: {
                 "Content-Type": "application/json",
-                "credentials": "include"
             }
         });
 
@@ -136,9 +132,7 @@ export const deleteMyProfile = () => async (dispatch) => {
         });
 
         const { data } = await axios.delete(`${base_url}/api/me`, {
-            headers: {
-                "credentials": "include"
-            }
+            withCredentials: true
         });
 
         dispatch({

@@ -8,9 +8,7 @@ export const getAllCategories = () => async (dispatch) => {
         })
 
         const { data } = await axios.get(`${base_url}/api/categories`, {
-            headers: {
-                "credentials": "include"
-            }
+            withCredentials: true
         });
 
         dispatch({
@@ -37,9 +35,9 @@ export const updateCategory = (category_id, Category) => async (dispatch) => {
         const { data } = await axios.put(`${base_url}/api/category/${category_id}`,
             { name: Category },
             {
+                withCredentials: true,
                 headers: {
                     'Content-Type': 'application/json',
-                    "credentials": "include"
                 }
             }
         );
@@ -64,9 +62,7 @@ export const deleteCategory = (category_id) => async (dispatch) => {
         })
 
         const { data } = await axios.delete(`${base_url}/api/category/${category_id}`, {
-            headers: {
-                "credentials": "include"
-            }
+            withCredentials: true
         });
 
         dispatch({
