@@ -1,4 +1,5 @@
 import axios from "axios";
+const base_url = import.meta.env.VITE_BASE_URL;
 
 export const getAllNotes = () => async (dispatch) => {
     try {
@@ -6,7 +7,11 @@ export const getAllNotes = () => async (dispatch) => {
             type: "LoadNotesRequest"
         })
 
-        const { data } = await axios.get(`/api/notes`);
+        const { data } = await axios.get(`${base_url}/api/notes`,{
+            headers: {
+                "credentials": "include"
+            }
+        });
 
         dispatch({
             type: "LoadNotesSuccess",
@@ -27,7 +32,11 @@ export const getCategoryNotes = (category_id) => async (dispatch) => {
             type: "LoadNotesRequest"
         })
 
-        const { data } = await axios.get(`/api/notes/${category_id}`);
+        const { data } = await axios.get(`${base_url}/api/notes/${category_id}`,{
+            headers: {
+                "credentials": "include"
+            }
+        });
 
         dispatch({
             type: "LoadNotesSuccess",
@@ -49,11 +58,12 @@ export const addNote = (note) => async (dispatch) => {
             type: "AddNoteRequest"
         })
 
-        const { data } = await axios.post(`/api/note`,
+        const { data } = await axios.post(`${base_url}/api/note`,
             note,
             {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'credentials': 'include'
                 }
             })
 
@@ -76,9 +86,10 @@ export const editNote = (note_id, note) => async (dispatch) => {
             type: "EditNoteRequest"
         })
 
-        const { data } = await axios.put(`/api/note/${note_id}`, note, {
+        const { data } = await axios.put(`${base_url}/api/note/${note_id}`, note, {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'credentials': 'include'
             }
         })
 
@@ -101,7 +112,11 @@ export const deleteNote = (note_id) => async (dispatch) => {
             type: "DeleteNoteRequest"
         })
 
-        const { data } = await axios.delete(`/api/note/${note_id}`);
+        const { data } = await axios.delete(`${base_url}/api/note/${note_id}`,{
+            headers: {
+                "credentials": "include"
+            }
+        });
 
         dispatch({
             type: "DeleteNoteSuccess",

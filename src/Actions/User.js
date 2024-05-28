@@ -1,4 +1,5 @@
 import axios from 'axios';
+const base_url = import.meta.env.VITE_BASE_URL;
 
 export const loadUser = () => async (dispatch) => {
     try {
@@ -6,7 +7,11 @@ export const loadUser = () => async (dispatch) => {
             type: "LoadUserRequest"
         });
 
-        const { data } = await axios.get(`/api/me`);
+        const { data } = await axios.get(`https://letsnote-backend.onrender.com/api/me`, {
+            headers: {
+                "credentials": "include"
+            }
+        });
 
         dispatch({
             type: "LoadUserSuccess",
@@ -27,9 +32,10 @@ export const loginUser = ({ name, email, password }) => async (dispatch) => {
             type: "LoginUserRequest"
         });
 
-        const { data } = await axios.post(`/api/login`, { name, email, password }, {
+        const { data } = await axios.post(`https://letsnote-backend.onrender.com/api/login`, { name, email, password }, {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "credentials": "include"
             }
         });
 
@@ -52,9 +58,10 @@ export const registerUser = (formData) => async (dispatch) => {
             type: "RegisterUserRequest"
         });
 
-        const { data } = await axios.post(`/api/register`, formData, {
+        const { data } = await axios.post(`${base_url}/api/register`, formData, {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "credentials": "include"
             }
         });
 
@@ -77,7 +84,11 @@ export const logoutUser = () => async (dispatch) => {
             type: "LogoutUserRequest"
         });
 
-        const { data } = await axios.get(`/api/logout`);
+        const { data } = await axios.get(`${base_url}/api/logout`, {
+            headers: {
+                "credentials": "include"
+            }
+        });
 
         dispatch({
             type: "LogoutUserSuccess",
@@ -99,9 +110,10 @@ export const updateProfile = (name) => async (dispatch) => {
             type: "UpdateProfileRequest"
         });
 
-        const { data } = await axios.put(`/api/me`, { name }, {
+        const { data } = await axios.put(`${base_url}/api/me`, { name }, {
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "credentials": "include"
             }
         });
 
@@ -123,7 +135,11 @@ export const deleteMyProfile = () => async (dispatch) => {
             type: "DeleteProfileRequest"
         });
 
-        const { data } = await axios.delete(`/api/me`);
+        const { data } = await axios.delete(`${base_url}/api/me`, {
+            headers: {
+                "credentials": "include"
+            }
+        });
 
         dispatch({
             type: "DeleteProfileSuccess",

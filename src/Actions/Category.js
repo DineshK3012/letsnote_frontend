@@ -1,4 +1,5 @@
 import axios from "axios";
+const base_url = import.meta.env.VITE_BASE_URL;
 
 export const getAllCategories = () => async (dispatch) => {
     try {
@@ -6,7 +7,11 @@ export const getAllCategories = () => async (dispatch) => {
             type: "LoadCategoryRequest"
         })
 
-        const { data } = await axios.get(`/api/categories`);
+        const { data } = await axios.get(`${base_url}/api/categories`, {
+            headers: {
+                "credentials": "include"
+            }
+        });
 
         dispatch({
             type: "LoadCategorySuccess",
@@ -29,11 +34,12 @@ export const updateCategory = (category_id, Category) => async (dispatch) => {
 
         console.log(category_id, Category)
 
-        const { data } = await axios.put(`/api/category/${category_id}`,
+        const { data } = await axios.put(`${base_url}/api/category/${category_id}`,
             { name: Category },
             {
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    "credentials": "include"
                 }
             }
         );
@@ -57,7 +63,11 @@ export const deleteCategory = (category_id) => async (dispatch) => {
             type: "deleteCategoryRequest"
         })
 
-        const { data } = await axios.delete(`/api/category/${category_id}`);
+        const { data } = await axios.delete(`${base_url}/api/category/${category_id}`, {
+            headers: {
+                "credentials": "include"
+            }
+        });
 
         dispatch({
             type: "deleteCategorySuccess",
